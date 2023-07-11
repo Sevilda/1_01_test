@@ -15,6 +15,6 @@ void main()
     printf("Terulet: %d\n", a*b);
 
     //Perimeter=2*(a+b)
-    printf("Kerulet: %d", 2*(a+b));
+    printf("Kerulet: %d", (a+b));
 
 }
