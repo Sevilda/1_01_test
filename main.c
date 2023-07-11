@@ -12,9 +12,9 @@ void main()
 
     
     //Area=a*b
-    printf("Terulet: %d\n", a*b);
+    printf("Terulet: %d\n", a*a);
 
     //Perimeter=2*(a+b)
-    printf("Kerulet: %d", 3*(a+b));
+    printf("Kerulet: %d", 2*(a+b));
 
 }
