@@ -109,7 +109,7 @@ int cleanup_suite()
 
 
 //formatted for markdown. Will be sent feedback as a comment to the student's commit.
-void printFailedTests()
+int printFailedTests()
 {
   CU_pFailureRecord fr = CU_get_failure_list();
   if (fr != NULL)
@@ -124,10 +124,12 @@ void printFailedTests()
     }
     //hibak:
     printf("\n> Jellemzo hibak lehetnek: \n>* Hibas beolvasasi formatum \n>* Hibas/hianyzo eredmeny\n>* Nem megfelelo formazas (pl. tizedesjegyek szama)");
+    return 1;
   }
   else
   {
     printf("Minden teszt sikeres!");
+    return 0;
   }
 }
 
@@ -143,8 +145,8 @@ int main()
   CU_basic_run_tests();
   printf("\n-->");
 
-  printFailedTests();
+  int ret = printFailedTests();
   CU_cleanup_registry();
 
-  return 0;
+  return ret;
 }
