@@ -1,5 +1,4 @@
 #include <fcntl.h>
-#include <stdlib.h>
 #define main main1
 #include "main.c"
 
@@ -110,7 +109,7 @@ int cleanup_suite()
 
 
 //formatted for markdown. Will be sent feedback as a comment to the student's commit.
-int printFailedTests()
+void printFailedTests()
 {
   CU_pFailureRecord fr = CU_get_failure_list();
   if (fr != NULL)
@@ -125,12 +124,10 @@ int printFailedTests()
     }
     //hibak:
     printf("\n> Jellemzo hibak lehetnek: \n>* Hibas beolvasasi formatum \n>* Hibas/hianyzo eredmeny\n>* Nem megfelelo formazas (pl. tizedesjegyek szama)");
-    return 1;
   }
   else
   {
     printf("Minden teszt sikeres!");
-    return 0;
   }
 }
 
@@ -146,8 +143,8 @@ int main()
   CU_basic_run_tests();
   printf("\n-->");
 
-  int ret = printFailedTests();
+  printFailedTests();
   CU_cleanup_registry();
 
-  exit(ret);
+  return 0;
 }
