@@ -13,9 +13,12 @@ jobs:
           gcc test.c -o test -lm -lcunit
           gcc main.c -o main -lm
       - name: test
-        env:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo '# Eredmények' > report.md
           ./test >> report.md
+      - name: comment
+        if: always()
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
           cml comment create report.md
