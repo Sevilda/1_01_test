@@ -6,9 +6,16 @@ jobs:
     container: docker://ghcr.io/iterative/cml:0-dvc2-base1
     steps:
       - uses: actions/checkout@v2
-      - name: autograde_task
+      - name: setup
+        run: |
+          sudo apt-get update
+          sudo apt-get install libcunit1 libcunit1-doc libcunit1-dev
+          gcc test.c -o test -lm -lcunit
+          gcc main.c -o main -lm
+      - name: test
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python run.py
+          echo '# Eredmények' > report.md
+          ./test >> report.md
           cml comment create report.md
