@@ -3,6 +3,8 @@ on: push
 jobs:
   run:
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
     container: docker://ghcr.io/iterative/cml:0-dvc2-base1
     steps:
       - uses: actions/checkout@v2
